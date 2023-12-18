@@ -5,14 +5,15 @@
 if [ $# -eq 0 ]; then
     if [ ! -e $HOME/.vimrc ]; then
         echo "Linking vimrc file"
-        ln -s vimrc $HOME/.vimrc
+        ln -rsf vimrc $HOME/.vimrc
     else
         echo "Warning: vimrc already exists."
         read -r -p "Are you sure you want to overwrite it? [y/N] " response
         case "$response" in
             [yY][eE][sS]|[yY])
                 echo "Linking vimrc file and overwriting"
-                ln -sf vimrc $HOME/.vimrc
+		rm $HOME/.vimrc
+        	ln -rsf vimrc $HOME/.vimrc
                 ;;
             *)
                 echo "skipped."
@@ -22,14 +23,15 @@ if [ $# -eq 0 ]; then
 
     if [ ! -e $HOME/.vim/ ]; then
         echo "Linking vim/ directory"
-        ln -s ./ $HOME/.vim/
+        ln -rsf ./ $HOME/.vim
     else
         echo "Warning: vim/ directory already exists."
         read -r -p "Are you sure you want to overwrite it? [y/N] " response
         case "$response" in
             [yY][eE][sS]|[yY])
                 echo "Linking vim/ directory and overwriting"
-                ln -sf ./ $HOME/.vim/
+		rm -rf $HOME/.vim/
+                ln -rsf ./ $HOME/.vim
                 ;;
             *)
                 echo "skipped."
@@ -46,10 +48,12 @@ case "$1" in
             rm -f $HOME/.vimrc
         fi
         if [ -L $HOME/.vim/ ]; then
-            rm -f $HOME/.vim/
+            rm -rf $HOME/.vim/
         fi
         ;;
     *)
-        echo "To link vim configuration run this script. To remove the symlink, run this script with the '--unlink' flag"
+	if [ -n "$1" ]; then
+            echo "To link vim configuration run this script. To remove the symlink, run this script with the '--unlink' flag"
+	fi
 esac
 
