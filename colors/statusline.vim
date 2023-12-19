@@ -7,6 +7,7 @@ execute 'hi StatusReplace ctermbg=' . g:tERR . ' ctermfg=' . g:tWHITE
 execute 'hi StatusVisual ctermbg=' . g:tTER . ' ctermfg=' . g:tDARKER_GREY
 execute 'hi StatusSelect ctermbg=' . g:tGREY . ' ctermfg=' . g:tTER
 execute 'hi StatusCommand ctermbg=' . g:tLIGHT_GREY . ' ctermfg=' . g:tDARKER_GREY
+execute 'hi StatusComment ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tDARK_GREY
 
 set laststatus=2
 
@@ -24,5 +25,6 @@ set statusline+=%#StatusSelect#%{(mode()=='\<C-S>')?'\ \ SELECT-BLOCK\ ':''}
 set statusline+=%#StatusCommand#%{(mode()=='c')?'\ \ COMMAND\ ':''}
 set statusline+=%#StatusNormal#
 set statusline+=\ %t\ %m " file name + modified
-set statusline+=%=%3l:%-3c\ %y " modified + line and column nr + file type
+set statusline+=%=%#StatusComment#\[\ %<%{getcwd()}\ \]
+set statusline+=%#StatusLineBG#\ \ \ \ %3l:%-3c\ %y " modified + line and column nr + file type
 
