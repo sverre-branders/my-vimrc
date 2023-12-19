@@ -10,7 +10,7 @@ augroup END
 augroup general_config
     autocmd!
     autocmd VimEnter * syntax enable
-    autocmd FileType * execute "filetype plugin on"
+    " autocmd FileType * execute "filetype plugin on"
     " autocmd FileType * echomsg "FileType detected: " . expand("<afile>:p")
     autocmd FileType * set number
     autocmd FileType * set tabstop=4
@@ -23,9 +23,9 @@ augroup general_config
     autocmd FileType * set hlsearch " Highlighted search
     autocmd FileType * set incsearch
     autocmd FileType * set showmatch " Matching parentices
-    autocmd FileType * set fileformat=unix
-    autocmd FileType * set encoding=utf-8  " The encoding displayed.
-    autocmd FileType * set fileencoding=utf-8  " The encoding written to file.
+    " autocmd FileType * set fileformat=unix
+    " autocmd FileType * set encoding=utf-8  " The encoding displayed.
+    " autocmd FileType * set fileencoding=utf-8  " The encoding written to file.
 augroup END
 " }}}
 
@@ -38,6 +38,7 @@ augroup general_mapping
     autocmd FileType * nnoremap <space> za
     autocmd FileType * xnoremap n :norm
     autocmd FileType * vnoremap n :norm
+    autocmd FileType * nnoremap <leader>v :setl nu!<CR>
 augroup END
 " }}}
 
