@@ -1,9 +1,9 @@
-let g:vim_dir = resolve($HOME . '/.vim/')
-" echo "Sourcing configuration from " . g:vim_dir
-execute "source " . fnameescape(g:vim_dir . 'general_config.vim')
+let g:vim_dir = fnameescape(resolve($HOME . '/.vim/'))
+execute "set runtimepath+=" . '"' . g:vim_dir . '"'
 
-execute "source " .  fnameescape(g:vim_dir . '/colors/color_definitions.vim')
+runtime general_config.vim
+runtime colors/color_definitions.vim
 colorscheme theme
-execute "source " .  fnameescape(g:vim_dir . '/colors/statusline.vim')
-execute "source " .  fnameescape(g:vim_dir . '/colors/tabline.vim')
+runtime colors/statusline.vim
+runtime colors/tabline.vim
 

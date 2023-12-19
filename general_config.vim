@@ -10,6 +10,8 @@ augroup END
 augroup general_config
     autocmd!
     autocmd VimEnter * syntax enable
+    autocmd FileType * execute "filetype plugin on"
+    " autocmd FileType * echomsg "FileType detected: " . expand("<afile>:p")
     autocmd FileType * set number
     autocmd FileType * set tabstop=4
     autocmd FileType * set shiftwidth=4
@@ -20,6 +22,7 @@ augroup general_config
     autocmd FileType * set cindent
     autocmd FileType * set hlsearch " Highlighted search
     autocmd FileType * set incsearch
+    autocmd FileType * set showmatch " Matching parentices
     autocmd FileType * set fileformat=unix
     autocmd FileType * set encoding=utf-8  " The encoding displayed.
     autocmd FileType * set fileencoding=utf-8  " The encoding written to file.
@@ -53,7 +56,7 @@ augroup END
 " Toggle Terminal ---- {{{
 augroup toggle_terminal
     autocmd!
-    autocmd FileType * execute "source " .  fnameescape(g:vim_dir . '/functions/term_split.vim')
+    autocmd FileType * runtime /functions/term_split.vim
     autocmd FileType * noremap <C-t> :call ToggleTerm()<CR>
     autocmd FileType * tnoremap <C-t> <C-w>:call ToggleTerm()<CR>
 augroup END
