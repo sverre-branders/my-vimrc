@@ -19,14 +19,26 @@ vnoremap n :norm
 
 " Tabs & Windows
 noremap  <C-m> <Esc>:tabn<CR>
-tnoremap  <C-m> <C-w>:tabn<CR>
+" tnoremap  <C-m> <C-w>:tabn<CR>
 noremap  <C-n> <Esc>:tabp<CR>
-tnoremap  <C-n> <C-w>:tabp<CR>
+" tnoremap  <C-n> <C-w>:tabp<CR>
 map <C-l> <C-w>w
 tmap <C-l> <C-w>w
 map <C-h> <C-w>p
 tmap <C-h> <C-w>p
 
+" File tree
+inoremap <C-l> <Esc>:Lex<cr>:vertical resize 50<CR>
+nnoremap <C-l> <Esc>:Lex<cr>:vertical resize 50<CR>
+autocmd FileType netrw noremap <buffer> <C-l> :Lex<CR>
+autocmd FileType netrw nmap <buffer> l <CR>
+autocmd FileType netrw nmap <buffer> h -
+
+" Find file
+set path=.,,**
+noremap <C-f> <Esc>:tabfind<Space>
+
 " Leader mappings
 let mapleader = "Ø"
 noremap <leader>s :source $MYVIMRC<CR>
+
