@@ -28,8 +28,8 @@ map <C-h> <C-w>p
 tmap <C-h> <C-w>p
 
 " File tree
-inoremap <C-l> <Esc>:Lex<cr>:vertical resize 50<CR>
-nnoremap <C-l> <Esc>:Lex<cr>:vertical resize 50<CR>
+inoremap <C-o> <Esc>:Lex<cr>:vertical resize 50<CR>
+nnoremap <C-o> <Esc>:Lex<cr>:vertical resize 50<CR>
 autocmd FileType netrw noremap <buffer> <C-l> :Lex<CR>
 autocmd FileType netrw nmap <buffer> l <CR>
 autocmd FileType netrw nmap <buffer> h -
