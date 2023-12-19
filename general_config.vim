@@ -22,10 +22,14 @@ noremap  <C-m> <Esc>:tabn<CR>
 " tnoremap  <C-m> <C-w>:tabn<CR>
 noremap  <C-n> <Esc>:tabp<CR>
 " tnoremap  <C-n> <C-w>:tabp<CR>
-map <C-l> <C-w>w
-tmap <C-l> <C-w>w
-map <C-h> <C-w>p
-tmap <C-h> <C-w>p
+noremap <C-l> <C-w>w
+tnoremap <C-l> <C-w>w
+noremap <C-h> <C-w>p
+tnoremap <C-h> <C-w>p
+" Toggle terminal
+execute "source " .  fnameescape(g:vim_dir . '/functions/term_split.vim')
+noremap <C-t> :call ToggleTerm()<CR>
+tnoremap <C-t> <C-w>:call ToggleTerm()<CR>
 
 " File tree
 inoremap <C-o> <Esc>:Lex<cr>:vertical resize 50<CR>
