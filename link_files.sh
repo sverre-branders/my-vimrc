@@ -41,19 +41,19 @@ if [ $# -eq 0 ]; then
 fi
 
 # check for 'unlink' flag
-case "$1" in
-    -u|--unlink|--remove|--uninstall)
-        echo "Removing symbolic links"
-        if [ -L $HOME/.vimrc ]; then
-            rm -f $HOME/.vimrc
-        fi
-        if [ -L $HOME/.vim/ ]; then
-            rm -rf $HOME/.vim/
-        fi
-        ;;
-    *)
-	if [ -n "$1" ]; then
-            echo "To link vim configuration run this script. To remove the symlink, run this script with the '--unlink' flag"
-	fi
-esac
+# case "$1" in
+#     -u|--unlink|--remove|--uninstall)
+#         echo "Removing symbolic links"
+#         if [ -L $HOME/.vimrc ]; then
+#             rm -f $HOME/.vimrc
+#         fi
+#         if [ -L $HOME/.vim/ ]; then
+#             rm -rf $HOME/.vim/
+#         fi
+#         ;;
+#     *)
+# 	if [ -n "$1" ]; then
+#             echo "To link vim configuration run this script. To remove the symlink, run this script with the '--unlink' flag"
+# 	fi
+# esac
 
