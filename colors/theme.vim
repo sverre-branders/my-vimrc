@@ -31,8 +31,8 @@ call g:SetTermCols("StatusLineNC", g:tDARKER_GREY, g:tLIGHT_GREY)
 call g:SetTermCols("LineNr", g:tDARKER_GREY, "")
 
 call g:SetTermCols("Underlined", g:tSEC, g:tLIGHT_GREY)
-call g:SetTermCols("IncSearch", g:tLIGHT_GREY, g:tSEC)
-call g:SetTermCols("Search", g:tSEC, g:tLIGHT_GREY)
+call g:SetTermCols("IncSearch", g:tSEC, g:tBLACK)
+call g:SetTermCols("Search", g:tBLACK, g:tLIGHT_GREY)
 call g:SetTermCols("MatchParen", g:tMAIN, g:tWHITE)
 call g:SetTermCols("ErrorMsg", g:tBLACK, g:tERR)
 

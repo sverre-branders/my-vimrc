@@ -77,10 +77,11 @@ augroup END
 " }}}
 
 " Leader mappings ---- {{{
+let mapleader="Ø"
 augroup leader_mappings
     autocmd!
-    autocmd FileType * let mapleader = "Ø"
     autocmd FileType * noremap <leader>s :source $MYVIMRC<CR>
+    autocmd FileType * noremap <leader>v :setl nu!<CR>
 augroup END
 " }}}
 
