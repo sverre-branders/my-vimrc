@@ -12,3 +12,7 @@ autocmd InsertLeave * match C_NAMESPACE /std::/
 vnoremap <LocalLeader>c :s/\%V\(.*\)/\/\* \1 \*\//<CR>
 " }}}
 
+" AutoComplete ---- {{{
+    " Prevents searching all included files
+set complete-=i
+" }}}
