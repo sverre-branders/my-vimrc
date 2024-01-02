@@ -60,6 +60,7 @@ augroup tmux_integration
     autocmd FileType * nnoremap <silent> <C-j> :<C-U>TmuxNavigateDown<CR>
     autocmd FileType * nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
     autocmd FileType * nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
+    autocmd FileType * nnoremap <silent> <C-\> :<C-U>TmuxNavigatePrevious<CR>
 augroup END
 " }}}
 
