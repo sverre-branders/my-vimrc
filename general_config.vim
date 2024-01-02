@@ -1,8 +1,8 @@
 " Vim script Folding ---- {{{
 augroup vim_fold
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim setlocal foldlevel=1
+    autocmd FileType vim,tmux setlocal foldmethod=marker
+    autocmd FileType vim,tmux setlocal foldlevel=1
 augroup END
 " }}}
 
@@ -10,15 +10,14 @@ augroup END
 augroup general_config
     autocmd!
     autocmd VimEnter * syntax enable
-    " autocmd FileType * execute "filetype plugin on"
-    " autocmd FileType * echomsg "FileType detected: " . expand("<afile>:p")
+    autocmd FileType * execute "filetype plugin on"
     autocmd FileType * set number
     autocmd FileType * set tabstop=4
     autocmd FileType * set shiftwidth=4
     autocmd FileType * set textwidth=79
     autocmd FileType * set expandtab
     autocmd FileType * set smarttab
-    autocmd FileType * set smartindent
+    autocmd FileType * set autoindent
     autocmd FileType * set cindent
     autocmd FileType * set hlsearch " Highlighted search
     autocmd FileType * set incsearch
