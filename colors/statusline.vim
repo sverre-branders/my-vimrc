@@ -10,6 +10,7 @@ execute 'hi StatusCommand ctermbg=' . g:tLIGHT_GREY . ' ctermfg=' . g:tDARKER_GR
 execute 'hi StatusComment ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tDARK_GREY
 
 set laststatus=2
+set noshowmode
 
 set statusline=
 set statusline+=%#StatusNormal#%{(mode()=='n')?'\ \ NORMAL\ ':''}
