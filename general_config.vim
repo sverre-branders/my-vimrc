@@ -14,7 +14,6 @@ augroup general_config
     autocmd FileType * set number
     autocmd FileType * set tabstop=4
     autocmd FileType * set shiftwidth=4
-    autocmd FileType * set textwidth=79
     autocmd FileType * set expandtab
     autocmd FileType * set smarttab
     autocmd FileType * set autoindent
