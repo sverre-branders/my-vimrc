@@ -42,46 +42,26 @@ augroup general_mapping
 augroup END
 " }}}
 
-" Tabs & Windows ---- {{{
-augroup tabs_windows
-    autocmd!
-    autocmd FileType * noremap  <C-m> <Esc>:tabn<CR>
-    autocmd FileType * noremap  <C-n> <Esc>:tabp<CR>
-    autocmd FileType * noremap <C-l> <C-w>w
-    autocmd FileType * tnoremap <C-l> <C-w>w
-    autocmd FileType * noremap <C-h> <C-w>p
-    autocmd FileType * tnoremap <C-h> <C-w>p
-augroup END
-" }}}
-
-" Toggle Terminal ---- {{{
-augroup toggle_terminal
-    autocmd!
-    autocmd FileType * runtime /functions/term_split.vim
-    autocmd FileType * noremap <C-t> :call ToggleTerm()<CR>
-    autocmd FileType * tnoremap <C-t> <C-w>:call ToggleTerm()<CR>
-augroup END
-" }}}
-
-" File tree ---- {{{
-augroup file_tree
-    autocmd!
-    autocmd FileType * inoremap <C-o> <Esc>:Lex<cr>:vertical resize 50<CR>
-    autocmd FileType * nnoremap <C-o> <Esc>:Lex<cr>:vertical resize 50<CR>
-    autocmd FileType * autocmd FileType netrw noremap <buffer> <C-l> :Lex<CR>
-    autocmd FileType * autocmd FileType netrw nmap <buffer> l <CR>
-    autocmd FileType * autocmd FileType netrw nmap <buffer> h -
-    autocmd FileType * set path=.,,**
-    autocmd FileType * noremap <C-f> <Esc>:tabfind<Space>
-augroup END
-" }}}
-
 " Leader mappings ---- {{{
 let mapleader="Ø"
 augroup leader_mappings
     autocmd!
     autocmd FileType * noremap <leader>s :source $MYVIMRC<CR>
     autocmd FileType * noremap <leader>v :setl nu!<CR>
+    autocmd FileType * noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
+    autocmd FileType * noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
 augroup END
 " }}}
 
+" Tmux integration ---- {{{
+augroup tmux_integration
+    autocmd!
+    autocmd FileType * nnoremap <silent> <C-h> :<C-U>TmuxNavigateLeft<CR>
+    autocmd FileType * nnoremap <silent> <C-j> :<C-U>TmuxNavigateDown<CR>
+    autocmd FileType * nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
+    autocmd FileType * nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
+augroup END
+" }}}
+
+" File tree ---- {{{
+" }}}
