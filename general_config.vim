@@ -46,8 +46,6 @@ augroup leader_mappings
     autocmd!
     autocmd FileType * noremap <leader>s :source $MYVIMRC<CR>
     autocmd FileType * noremap <leader>v :setl nu!<CR>
-    autocmd FileType * noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
-    autocmd FileType * noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
 augroup END
 " }}}
 
@@ -59,6 +57,25 @@ augroup tmux_integration
     autocmd FileType * nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
     autocmd FileType * nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
     autocmd FileType * nnoremap <silent> <C-\> :<C-U>TmuxNavigatePrevious<CR>
+
+    autocmd FileType * noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
+    autocmd FileType * noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
+    " visual mode requires a new function
+    autocmd FileType * vnoremap <leader>r :<c-u>call TmuxSendVisual(visualmode())<cr>
+
+    function! TmuxSendVisual(type)
+        let save_register = @@
+        if a:type ==# 'v'
+            normal! `<v`>y
+        elseif a:type ==# 'char'
+            normal! `[v`]y
+        else
+            return
+        endif
+        call system("! tmux send-keys -t .+ -l " . shellescape(join([@@, "\n"])) )
+
+        let @@ = save_register
+    endfunction
 augroup END
 " }}}
 
