@@ -7,77 +7,82 @@ augroup END
 " }}}
 
 " General Config ---- {{{ 
-augroup general_config
-    autocmd!
-    autocmd VimEnter * syntax enable
-    autocmd FileType * execute "filetype plugin on"
-    autocmd FileType * set number
-    autocmd FileType * set tabstop=4
-    autocmd FileType * set shiftwidth=4
-    autocmd FileType * set expandtab
-    autocmd FileType * set smarttab
-    autocmd FileType * set autoindent
-    autocmd FileType * set cindent
-    autocmd FileType * set hlsearch " Highlighted search
-    autocmd FileType * set incsearch
-    autocmd FileType * set showmatch " Matching parentices
+syntax enable
+execute "filetype plugin on"
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set autoindent
+set cindent
+set hlsearch " Highlighted search
+set incsearch
+set showmatch " Matching parentices
+set path=.,,**
     " autocmd FileType * set fileformat=unix
     " autocmd FileType * set encoding=utf-8  " The encoding displayed.
     " autocmd FileType * set fileencoding=utf-8  " The encoding written to file.
-augroup END
 " }}}
 
 " General Mapping ---- {{{
-augroup general_mapping
-    autocmd!
-    autocmd FileType * nnoremap Q å
-    autocmd FileType * noremap ø :
-    autocmd FileType * tnoremap ø <C-w>:
-    autocmd FileType * nnoremap <space> za
-    autocmd FileType * xnoremap n :norm
-    autocmd FileType * vnoremap n :norm
-    autocmd FileType * nnoremap <leader>v :setl nu!<CR>
-augroup END
+nnoremap Q å
+noremap ø :
+tnoremap ø <C-w>:
+nnoremap <space> za
+xnoremap n :norm
+vnoremap n :norm
+nnoremap <leader>v :setl nu!<CR>
 " }}}
 
 " Leader mappings ---- {{{
 let mapleader="Ø"
-augroup leader_mappings
-    autocmd!
-    autocmd FileType * noremap <leader>s :source $MYVIMRC<CR>
-    autocmd FileType * noremap <leader>v :setl nu!<CR>
-augroup END
+noremap <leader>s :source $MYVIMRC<CR>:echo "Reloaded vimrc"<CR>
+noremap <leader>v :setl nu!<CR>
 " }}}
 
 " Tmux integration ---- {{{
-augroup tmux_integration
-    autocmd!
-    autocmd FileType * nnoremap <silent> <C-h> :<C-U>TmuxNavigateLeft<CR>
-    autocmd FileType * nnoremap <silent> <C-j> :<C-U>TmuxNavigateDown<CR>
-    autocmd FileType * nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
-    autocmd FileType * nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
-    autocmd FileType * nnoremap <silent> <C-\> :<C-U>TmuxNavigatePrevious<CR>
+nnoremap <silent> <C-h> :<C-U>TmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> :<C-U>TmuxNavigateDown<CR>
+nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
+nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
+nnoremap <silent> <C-\> :<C-U>TmuxNavigatePrevious<CR>
 
-    autocmd FileType * noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
-    autocmd FileType * noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
-    " visual mode requires a new function
-    autocmd FileType * vnoremap <leader>r :<c-u>call TmuxSendVisual(visualmode())<cr>
+noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
+noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
+" visual mode requires a new function
+vnoremap <leader>r :<c-u>call TmuxSendVisual(visualmode())<cr>
 
-    function! TmuxSendVisual(type)
-        let save_register = @@
-        if a:type ==# 'v'
-            normal! `<v`>y
-        elseif a:type ==# 'char'
-            normal! `[v`]y
-        else
-            return
-        endif
-        call system("! tmux send-keys -t .+ -l " . shellescape(join([@@, "\n"])) )
+function! TmuxSendVisual(type)
+    let save_register = @@
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+    call system("! tmux send-keys -t .+ -l " . shellescape(join([@@, "\n"])) )
 
-        let @@ = save_register
-    endfunction
-augroup END
+    let @@ = save_register
+endfunction
 " }}}
 
 " File tree ---- {{{
+nnoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
+inoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
+autocmd FileType netrw nnoremap <C-o> <Esc>:Lex<CR>
+
+" New bindings
+autocmd FileType netrw nnoremap <buffer> l @<Plug>NetrwLocalBrowseCheck
+autocmd FileType netrw nnoremap <buffer> h @<Plug>NetrwBrowseUpDir
+autocmd FileType netrw nnoremap <buffer> t <Esc>:call OpenInTmuxPane()<CR>
+
+function! OpenInTmuxPane()
+    let selected_path = netrw#Call('NetrwFile', netrw#Call('NetrwGetWord'))
+    Lex
+    call system('tmux split-window -l 50% "vim ' . shellescape(selected_path) . '"')
+endfunction
+
+" TODO: tabfind in a popup
 " }}}
