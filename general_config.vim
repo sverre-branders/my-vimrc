@@ -8,14 +8,14 @@ augroup END
 
 " General Config ---- {{{ 
 syntax enable
-execute "filetype plugin on"
+execute "filetype plugin indent on"
 set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-set autoindent
-set cindent
+" set autoindent
+" set cindent
 set hlsearch " Highlighted search
 set incsearch
 set showmatch " Matching parentices
@@ -62,7 +62,8 @@ function! TmuxSendVisual(type)
     else
         return
     endif
-    call system("! tmux send-keys -t .+ -l " . shellescape(join([@@, "\n"])) )
+    let escaped_text = escape(@@, '\')
+    call system("! tmux send-keys -t .+ -l " . shellescape(join([escaped_text, "\n"])) )
 
     let @@ = save_register
 endfunction
