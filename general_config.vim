@@ -20,6 +20,7 @@ set hlsearch " Highlighted search
 set incsearch
 set showmatch " Matching parentices
 set path=.,,**
+set clipboard=unnamedplus " set default copy\paste to use "+, this allows copy paste between buffers if vim has clipboard-enabled
     " autocmd FileType * set fileformat=unix
     " autocmd FileType * set encoding=utf-8  " The encoding displayed.
     " autocmd FileType * set fileencoding=utf-8  " The encoding written to file.

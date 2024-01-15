@@ -1,6 +1,7 @@
 let maplocalleader="Ø"
 " Namespaces ---- {{{
 inoreabbrev <expr> ss 'std::' . nr2char(getchar(0)) . "\<Left>"
+set cindent
 
 execute "highlight C_NAMESPACE ctermfg=" . g:tGREY
 autocmd BufWinEnter * match C_NAMESPACE /std::/
