@@ -73,8 +73,8 @@ endfunction
 " File tree ---- {{{
 let g:netrw_keepdir = 1
 let g:netrw_banner = 0
-nnoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
-inoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
+nnoremap <C-o> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
+inoremap <C-o> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
 autocmd FileType netrw nnoremap <buffer> <C-o> <Esc>:Lex<CR>
 
 " New bindings
