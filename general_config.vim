@@ -71,13 +71,15 @@ endfunction
 " }}}
 
 " File tree ---- {{{
+let g:netrw_keepdir = 0
+let g:netrw_banner = 0
 nnoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
 inoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
-autocmd FileType netrw nnoremap <C-o> <Esc>:Lex<CR>
+autocmd FileType netrw nnoremap <buffer> <C-o> <Esc>:Lex<CR>
 
 " New bindings
-autocmd FileType netrw nnoremap <buffer> l @<Plug>NetrwLocalBrowseCheck
-autocmd FileType netrw nnoremap <buffer> h @<Plug>NetrwBrowseUpDir
+autocmd FileType netrw nmap <buffer> l <CR>
+autocmd FileType netrw nmap <buffer> h -^
 autocmd FileType netrw nnoremap <buffer> t <Esc>:call OpenInTmuxPane()<CR>
 
 function! OpenInTmuxPane()
