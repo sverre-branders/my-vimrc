@@ -71,7 +71,7 @@ endfunction
 " }}}
 
 " File tree ---- {{{
-let g:netrw_keepdir = 0
+let g:netrw_keepdir = 1
 let g:netrw_banner = 0
 nnoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
 inoremap <C-o> <Esc>:Lex<CR>:vertical resize<CR>
