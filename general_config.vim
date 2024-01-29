@@ -10,12 +10,6 @@ augroup END
 syntax enable
 execute "filetype plugin indent on"
 set number
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-" set autoindent
-" set cindent
 set hlsearch " Highlighted search
 set incsearch
 set showmatch " Matching parentices
@@ -34,6 +28,15 @@ nnoremap <space> za
 xnoremap n :norm
 vnoremap n :norm
 nnoremap <leader>v :setl nu!<CR>
+" }}}
+
+" Tabs and Spaces ---- {{{
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set list
+set listchars=multispace:\ \ \ ▕ " This shows indentation guides
 " }}}
 
 " Leader mappings ---- {{{

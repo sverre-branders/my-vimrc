@@ -64,6 +64,7 @@ call g:SetTermCols("PreProc", g:tSEC, "")
 call g:SetTermCols("Identifier", g:tSEC, "")
 call g:SetTermCols("Comment", g:tDARK_GREY, "")
 call g:SetTermCols("Conceal", g:tLIGHT_GREY, "")
+call g:SetTermCols("SpecialKey", g:tDARKER_GREY, "") " Indentation guides
 
 " SPELLING
 call g:SetTermCols("SpellBad", g:tERR, "0")
