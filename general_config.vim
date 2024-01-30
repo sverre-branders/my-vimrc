@@ -93,3 +93,7 @@ endfunction
 
 " TODO: tabfind in a popup
 " }}}
+
+" Completion ---- {{{
+set omnifunc=syntaxcomplete#Complete
+" }}}
