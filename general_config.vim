@@ -88,7 +88,8 @@ autocmd FileType netrw nnoremap <buffer> t <Esc>:call OpenInTmuxPane()<CR>
 function! OpenInTmuxPane()
     let selected_path = netrw#Call('NetrwFile', netrw#Call('NetrwGetWord'))
     Lex
-    call system('tmux split-window -l 50% "vim ' . shellescape(selected_path) . '"')
+    call system('tmux split-window -h "vim ' . shellescape(selected_path) . '"')
+    call system("! tmux send-keys -t 0 select-layout tiled Enter")
 endfunction
 
 " TODO: tabfind in a popup
