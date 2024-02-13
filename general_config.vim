@@ -89,7 +89,7 @@ function! OpenInTmuxPane()
     let selected_path = netrw#Call('NetrwFile', netrw#Call('NetrwGetWord'))
     Lex
     call system('tmux split-window -h "vim ' . shellescape(selected_path) . '"')
-    call system("! tmux send-keys -t 0 select-layout tiled Enter")
+    call system("tmux select-layout tiled")
 endfunction
 
 " TODO: tabfind in a popup
