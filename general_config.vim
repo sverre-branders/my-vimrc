@@ -28,6 +28,7 @@ nnoremap <space> za
 xnoremap n :norm
 vnoremap n :norm
 nnoremap <leader>v :setl nu!<CR>
+nnoremap <leader>R :so $MYVIMRC<CR>
 " }}}
 
 " Tabs and Spaces ---- {{{
