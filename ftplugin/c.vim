@@ -17,3 +17,7 @@ vnoremap <LocalLeader>c :s/\%V\(.*\)/\/\* \1 \*\//<CR>
     " Prevents searching all included files
 set complete-=i
 " }}}
+"
+" OverWrite mappings ---- {{{
+noremap <leader>a :call system("tmux send-keys -t + 'make' Enter")<CR>
+" }}}
