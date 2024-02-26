@@ -9,6 +9,9 @@ augroup END
 " General Config ---- {{{ 
 syntax enable
 execute "filetype plugin indent on"
+
+scriptencoding utf-8
+set encoding=utf-8
 set number
 set hlsearch " Highlighted search
 set incsearch
@@ -37,8 +40,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set list
-set listchars=multispace:\ \ \ ▕ " This shows indentation guides
-set listchars=tab:\ \ \ → " This shows tab guides
+set listchars=tab:\ →,trail:·,extends:»,precedes:«,nbsp:·,multispace:\ \ \ ▕
 " }}}
 
 " Leader mappings ---- {{{
