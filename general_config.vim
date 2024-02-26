@@ -38,6 +38,7 @@ set shiftwidth=4
 set expandtab
 set list
 set listchars=multispace:\ \ \ ▕ " This shows indentation guides
+set listchars=tab:\ \ \ → " This shows tab guides
 " }}}
 
 " Leader mappings ---- {{{
