@@ -19,5 +19,5 @@ set complete-=i
 " }}}
 "
 " OverWrite mappings ---- {{{
-noremap <leader>a :call system("tmux send-keys -t + 'make' Enter")<CR>
+noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
 " }}}
