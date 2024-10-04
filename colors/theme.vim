@@ -79,3 +79,9 @@ call g:SetTermCols("cDefine", g:tTER, "")
 
 " MARKDOWN HIGHLIGHTING
 call g:SetTermCols("markdownLinkText", g:tDARKER_GREY, g:tTER)
+
+" VIM DIFF
+call g:SetTermCols("DiffAdd", g:tDARKER_GREY, g:tTER)
+call g:SetTermCols("DiffChange", g:tDARKER_GREY, g:tSEC)
+call g:SetTermCols("DiffDelete", g:tDARKER_GREY, g:tMAIN)
+call g:SetTermCols("DiffText", g:tDARKER_GREY, g:tERR)
