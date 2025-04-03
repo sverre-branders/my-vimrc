@@ -12,7 +12,7 @@ execute "filetype plugin indent on"
 
 scriptencoding utf-8
 set encoding=utf-8
-set number
+set relativenumber
 set hlsearch " Highlighted search
 set incsearch
 set showmatch " Matching parentices
@@ -80,9 +80,9 @@ endfunction
 " File tree ---- {{{
 let g:netrw_keepdir = 1
 let g:netrw_banner = 0
-nnoremap <C-o> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
-inoremap <C-o> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
-autocmd FileType netrw nnoremap <buffer> <C-o> <Esc>:Lex<CR>
+nnoremap <C-f> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
+inoremap <C-f> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
+autocmd FileType netrw nnoremap <buffer> <C-f> <Esc>:Lex<CR>
 
 " New bindings
 autocmd FileType netrw nmap <buffer> l <CR>
@@ -101,4 +101,9 @@ endfunction
 
 " Completion ---- {{{
 set omnifunc=syntaxcomplete#Complete
+" }}}
+
+" LSP ---- {{{
+let g:lsp_document_highlight_enabled = 0
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 " }}}
