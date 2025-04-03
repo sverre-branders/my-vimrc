@@ -7,6 +7,7 @@ augroup END
 " }}}
 
 " General Config ---- {{{ 
+set background=dark
 syntax enable
 execute "filetype plugin indent on"
 

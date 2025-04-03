@@ -1,3 +1,4 @@
+let g:colors_name='theme'
 
 function! g:SetTermCols(group, ctermfg, ctermbg)
 	let l:attr = get(a:, 1, "")
