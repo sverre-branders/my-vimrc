@@ -78,12 +78,38 @@ function! TmuxSendVisual(type)
 endfunction
 " }}}
 
-" File tree ---- {{{
-let g:netrw_keepdir = 1
-let g:netrw_banner = 0
-nnoremap <C-f> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
-inoremap <C-f> <Esc>:lcd %:p:h<CR>:Lex<CR>:vertical resize<CR>
-autocmd FileType netrw nnoremap <buffer> <C-f> <Esc>:Lex<CR>
+" File navigation --- {{{
+if executable('fzf')
+    nnoremap <C-f> <Esc>:call FzfOpenInTmuxPane()<CR>
+    inoremap <C-f> <Esc>:call FzfOpenInTmuxPane()<CR>
+
+    function! FzfOpen() abort
+        let l:tempname = tempname()
+        " fzf | awk '{ print $1":1:0" }' > file
+        execute 'silent !fzf --preview "cat {}" > ' . fnameescape(l:tempname)
+        try
+            execute 'cfile ' . l:tempname
+            redraw!
+        finally
+            call delete(l:tempname)
+        endtry
+    endfunction
+
+    function! FzfOpenInTmuxPane() abort
+        let l:tempname = tempname()
+        execute 'silent !fzf --preview "cat {}" > ' . fnameescape(l:tempname)
+        try
+            let l:selected_path = shellescape(readfile(l:tempname)[0])
+            call system('tmux split-window -h "vim ' . l:selected_path . '"')
+            call system("tmux select-layout tiled")
+        finally
+            call delete(l:tempname)
+        endtry
+    endfunction
+
+endif
+
+" }}}
 
 " New bindings
 autocmd FileType netrw nmap <buffer> l <CR>
