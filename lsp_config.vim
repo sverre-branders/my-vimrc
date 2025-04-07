@@ -7,21 +7,20 @@ if executable('pylsp')
         \ })
 endif
 
-if executable('ccls')
-   au User lsp_setup call lsp#register_server({
-      \ 'name': 'ccls',
-      \ 'cmd': {server_info->['ccls']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-      \ 'initialization_options': {},
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-      \ })
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     " setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    " nmap <buffer> gd <plug>(lsp-definition)
+    " nmap <buffer> gd <plug>(lsp-definition) TODO: gf -> open definition in
+    " new tab
     nmap <buffer> gd <plug>(lsp-peek-definition)
     " nmap <buffer> gs <plug>(lsp-document-symbol-search)
     " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
