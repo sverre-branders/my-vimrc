@@ -15,6 +15,14 @@ if executable('clangd')
         \ })
 endif
 
+if executable('rustup')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rust-analyzer',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rust-analyzer']},
+        \ 'allowlist': ['rust'],
+        \ })
+endif
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     " setlocal signcolumn=yes
