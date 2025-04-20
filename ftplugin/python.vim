@@ -12,3 +12,11 @@ endfunction
 
 noremap <leader>a :call SendToNextPane()<CR>
 
+" Run ruff check on save, only if ruff is installed
+if executable('ruff')
+    " echom "Found Ruff executable"
+    augroup PythonRuffOnSave
+        autocmd!
+        autocmd BufWritePost <buffer> call tmuxutil#RunCommandInNextPane('ruff check ' . expand('%'))
+    augroup END
+endif
