@@ -19,4 +19,6 @@ if executable('ruff')
         autocmd!
         autocmd BufWritePost <buffer> call tmuxutil#RunCommandInNextPane('ruff check ' . expand('%'))
     augroup END
+else
+    echom "Consider installing ruff 'pip install ruff'"
 endif
