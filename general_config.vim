@@ -57,10 +57,10 @@ nnoremap <silent> <C-k> :<C-U>TmuxNavigateUp<CR>
 nnoremap <silent> <C-l> :<C-U>TmuxNavigateRight<CR>
 nnoremap <silent> <C-\> :<C-U>TmuxNavigatePrevious<CR>
 
-noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
-noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
+" noremap <leader>r :call system('tmux send-keys -t .+ -l ' . shellescape(join([getline("."), "\n"])) )<CR>
+" noremap <leader>a :call system('tmux send-keys -t .+ -l ' . shellescape(join(getline(1, '$'), "\n") . "\n") )<CR>
 " visual mode requires a new function
-vnoremap <leader>r :<c-u>call TmuxSendVisual(visualmode())<cr>
+" vnoremap <leader>r :<c-u>call TmuxSendVisual(visualmode())<cr>
 
 function! TmuxSendVisual(type)
     let save_register = @@
