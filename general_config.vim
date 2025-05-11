@@ -13,7 +13,7 @@ execute "filetype plugin indent on"
 
 scriptencoding utf-8
 set encoding=utf-8
-set relativenumber
+set relativenumber number
 set hlsearch " Highlighted search
 set incsearch
 set showmatch " Matching parentices
