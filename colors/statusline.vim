@@ -2,31 +2,31 @@
 
 execute 'hi StatusLineBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tWHITE
 
-execute 'hi StatusNormalBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tDARKER_GREY
+execute 'hi StatusNormalBG ctermbg=NONE' . ' ctermfg=' . g:tDARKER_GREY
 execute 'hi StatusNormal ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tWHITE
 execute 'hi StatusNormalBGI ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tBLACK
 
 execute 'hi StatusInsert ctermbg=' . g:tSEC . ' ctermfg=' . g:tWHITE
-execute 'hi StatusInsertBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tSEC
+execute 'hi StatusInsertBG ctermbg=NONE' . ' ctermfg=' . g:tSEC
 execute 'hi StatusInsertFG ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tSEC
 
 execute 'hi StatusReplace ctermbg=' . g:tERR . ' ctermfg=' . g:tWHITE
-execute 'hi StatusReplaceBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tERR
+execute 'hi StatusReplaceBG ctermbg=NONE' . ' ctermfg=' . g:tERR
 execute 'hi StatusReplaceFG ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tERR
 
 execute 'hi StatusVisual ctermbg=' . g:tTER . ' ctermfg=' . g:tDARKER_GREY
-execute 'hi StatusVisualBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tTER
+execute 'hi StatusVisualBG ctermbg=NONE' . ' ctermfg=' . g:tTER
 execute 'hi StatusVisualFG ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tTER
 
 execute 'hi StatusSelect ctermbg=' . g:tGREY . ' ctermfg=' . g:tTER
-execute 'hi StatusSelectBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tGREY
+execute 'hi StatusSelectBG ctermbg=NONE' . ' ctermfg=' . g:tGREY
 execute 'hi StatusSelectFG ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tGREY
 
 execute 'hi StatusCommand ctermbg=' . g:tLIGHT_GREY . ' ctermfg=' . g:tDARKER_GREY
-execute 'hi StatusCommandBG ctermbg=' . g:tBLACK . ' ctermfg=' . g:tLIGHT_GREY
+execute 'hi StatusCommandBG ctermbg=NONE' . ' ctermfg=' . g:tLIGHT_GREY
 execute 'hi StatusCommandFG ctermbg=' . g:tDARKER_GREY . ' ctermfg=' . g:tLIGHT_GREY
 
-execute 'hi StatusComment ctermbg=' . g:tBLACK . ' ctermfg=' . g:tDARKER_GREY
+execute 'hi StatusComment ctermbg=NONE' . ' ctermfg=' . g:tDARKER_GREY
 
 set laststatus=2
 set noshowmode
@@ -80,7 +80,7 @@ set statusline+=%#StatusCommandFG#%{(mode()=='c')?'':''}
 set statusline+=%#StatusNormal#
 set statusline+=\ %t\ %m " file name + modified
 set statusline+=%#StatusNormalBG#
-set statusline+=%=%#StatusComment#\[\ %<%{getcwd()}\ \]
+set statusline+=%=%#StatusComment#\[\ %<%{getcwd()}\ \]\ 
 set statusline+=%#StatusNormal#\ %l:%-c\ \ %y " modified + line and column nr + file type
 set statusline+=\ %#StatusNormalBG#
 
