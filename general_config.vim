@@ -136,5 +136,5 @@ set omnifunc=syntaxcomplete#Complete
 
 " LSP ---- {{{
 let g:lsp_document_highlight_enabled = 0
-let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:lsp_diagnostics_enabled = 1
 " }}}

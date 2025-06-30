@@ -23,6 +23,14 @@ if executable('rustup')
         \ })
 endif
 
+if executable('jdtls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'Eclipse JDT Language Server',
+        \ 'cmd': {server_info->['jdtls', '-data', getcwd()]},
+        \ 'allowlist': ['java']
+        \ })
+endif
+
 function! ScrollPopup(nlines)
     echom "SCROLLING"
     let winids = popup_list()
@@ -48,17 +56,18 @@ function! ScrollPopup(nlines)
 endfunction
 
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
+    " setlocal omnifunc=lsp#complete
     " setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     " nmap <buffer> gd <plug>(lsp-definition) TODO: gf -> open definition in
     " new tab
-    nmap <buffer> gd <plug>(lsp-peek-definition)
-    " nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gd <plug>(lsp-definition)
+    " nmap <buffer> gd <plug>(lsp-peek-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
     " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> gr <plug>(lsp-references)
-    " nmap <buffer> gi <plug>(lsp-implementation)
-    " nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>n <plug>(lsp-rename)
     " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
