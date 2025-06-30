@@ -47,8 +47,8 @@ function! tmuxutil#RunCommandInShellPane(command)
         " Switch to the shell pane
         call system('tmux select-pane -t ' . l:shell_pane)
 
-        " Send the command to the shell pane
-        call system('tmux send-keys "' . a:command . '" C-m')
+        call system('tmux send-keys C-u') " Clear the current line
+        call system('tmux send-keys "' . a:command . '" C-m') " Send the command
 
         " Return to the original pane
         call system('tmux select-pane -t ' . l:current_pane)
