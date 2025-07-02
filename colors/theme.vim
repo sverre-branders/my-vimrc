@@ -37,6 +37,8 @@ call g:SetTermCols("Search", g:tBLACK, g:tLIGHT_GREY)
 call g:SetTermCols("MatchParen", g:tMAIN, g:tWHITE)
 call g:SetTermCols("ErrorMsg", g:tBLACK, g:tERR)
 
+call g:SetTermCols("ColorColumn", g:tLIGHT_GREY, g:tBLACK)
+
 " WINDOWS, FOLDS & TABS
 call g:SetTermCols("VertSplit", g:tDARKER_GREY, g:tGREY)
 call g:SetTermCols("Folded", g:tGREY, g:tDARKER_GREY)

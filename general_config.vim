@@ -19,6 +19,7 @@ set incsearch
 set showmatch " Matching parentices
 set path=.,,**
 set clipboard=unnamedplus " set default copy\paste to use "+, this allows copy paste between buffers if vim has clipboard-enabled
+set colorcolumn=80 " line marker indicating text is too wide
 
 " Cursor
 let &t_SI = "\e[6 q"
