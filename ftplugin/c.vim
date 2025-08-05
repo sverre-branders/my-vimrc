@@ -21,3 +21,24 @@ set complete-=i
 " OverWrite mappings ---- {{{
 noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
 " }}}
+"
+
+" View Assembly ---- {{{
+function! ViewAssembly(...)
+    " echom "ViewAssembly"
+    let l:optimize_opt = a:0 >= 1 ? a:1 : ''
+
+    if empty($TMUX)
+        return
+    endif
+
+    let l:gxx_options = '-S -fverbose-asm -fno-asynchronous-unwind-tables '
+            \ . '-fno-dwarf2-cfi-asm -masm=intel ' 
+            \ . l:optimize_opt
+
+    let l:cmd = 'tmux split-window "g++ ' . l:gxx_options . ' -o - % | vim -"'
+
+    " echom 'w !' . l:cmd
+    silent! execute 'w !' . l:cmd
+endfunction
+" }}}
