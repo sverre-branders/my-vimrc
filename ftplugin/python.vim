@@ -16,3 +16,6 @@ if executable('ruff')
 else
     echom "Consider installing ruff 'pip install ruff'"
 endif
+
+" Ignore env and __pycache__
+set wildignore+=*/env/*,*/__pycache__/*
