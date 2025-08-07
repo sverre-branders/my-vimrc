@@ -31,30 +31,6 @@ if executable('jdtls')
         \ })
 endif
 
-function! ScrollPopup(nlines)
-    echom "SCROLLING"
-    let winids = popup_list()
-    if len(winids) == 0
-        return
-    endif
-
-    " Ignore hidden popups
-    let prop = popup_getpos(winids[0])
-    if prop.visible != 1
-        return
-    endif
-
-    let firstline = prop.firstline + a:nlines
-    let buf_lastline = str2nr(trim(win_execute(winids[0], "echo line('$')")))
-    if firstline < 1
-        let firstline = 1
-    elseif prop.lastline + a:nlines > buf_lastline
-        let firstline = buf_lastline + prop.firstline - prop.lastline
-    endif
-
-    call popup_setoptions(winids[0], {'firstline': firstline})
-endfunction
-
 function! s:on_lsp_buffer_enabled() abort
     " setlocal omnifunc=lsp#complete
     " setlocal signcolumn=yes
@@ -72,8 +48,10 @@ function! s:on_lsp_buffer_enabled() abort
     " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    " nnoremap <buffer> <expr><c-,> lsp#scroll(+4)
-    " nnoremap <buffer> <expr><c-m> lsp#scroll(-4)
+    nnoremap <buffer> <expr>gpj lsp#scroll(+1)
+    nnoremap <buffer> <expr>gpd lsp#scroll(+50)
+    nnoremap <buffer> <expr>gpk lsp#scroll(-1)
+    nnoremap <buffer> <expr>gpu lsp#scroll(-50)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
