@@ -17,15 +17,6 @@ vnoremap <LocalLeader>c :s/\%V\(.*\)/\/\* \1 \*\//<CR>
     " Prevents searching all included files
 set complete-=i
 " }}}
-"
-" OverWrite mappings ---- {{{
-noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
-
-if executable('clang-format')
-    noremap <leader>e :w<CR>:call bufferutil#RunInShellAndReloadBuffer('clang-format ' . shellescape(expand('%')) . ' -i -style=GNU')<CR>
-endif
-" }}}
-"
 
 " View Assembly ---- {{{
 function! ViewAssembly(...)
@@ -46,3 +37,21 @@ function! ViewAssembly(...)
     silent! execute 'w !' . l:cmd
 endfunction
 " }}}
+
+" OverWrite mappings ---- {{{
+noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
+noremap <leader>s :call ViewAssembly()<CR>
+
+if executable('clang-format')
+    noremap <leader>e :w<CR>:call bufferutil#RunInShellAndReloadBuffer('clang-format ' . shellescape(expand('%')) . ' -i -style=Microsoft')<CR>
+endif
+if executable('clang-tidy')
+    augroup CxxTidyOnSave
+        autocmd!
+        autocmd BufWritePost <buffer> call tmuxutil#RunCommandInShellPane('make lint file=' . shellescape(expand('%')))
+    augroup END
+else
+    echom "Consider installing 'clang-tidy'"
+endif
+" }}}
+"
