@@ -20,6 +20,10 @@ set complete-=i
 "
 " OverWrite mappings ---- {{{
 noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
+
+if executable('clang-format')
+    noremap <leader>e :w<CR>:call bufferutil#RunInShellAndReloadBuffer('clang-format ' . shellescape(expand('%')) . ' -i -style=GNU')<CR>
+endif
 " }}}
 "
 
