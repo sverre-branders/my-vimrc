@@ -37,7 +37,7 @@ function! tmuxutil#RunCommandInShellPane(command)
     let l:shell_pane = ''
 
     for l:line in split(l:tmux_panes, "\n")
-        if l:line =~ 'bash\|zsh\|sh'
+        if l:line =~ 'bash\|zsh\|sh\|docker'
             let l:shell_pane = matchstr(l:line, '^\S\+')
             break
         endif
