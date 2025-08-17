@@ -43,7 +43,7 @@ noremap <leader>a :w<CR>:call system("tmux send-keys -t + 'make' Enter")<CR>
 noremap <leader>s :call ViewAssembly()<CR>
 
 if executable('clang-format')
-    noremap <leader>e :w<CR>:call bufferutil#RunInShellAndReloadBuffer('clang-format ' . shellescape(expand('%')) . ' -i -style=Microsoft')<CR>
+    noremap <leader>e :w<CR>:call bufferutil#RunInShellAndReloadBuffer('clang-format ' . shellescape(expand('%')) . ' -i')<CR>
 endif
 if executable('clang-tidy')
     augroup CxxTidyOnSave
