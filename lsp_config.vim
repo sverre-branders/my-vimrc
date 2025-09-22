@@ -31,6 +31,14 @@ if executable('jdtls')
         \ })
 endif
 
+if executable('texlab')
+  autocmd User lsp_setup call lsp#register_server({
+        \'name': 'texlab',
+        \'cmd': {server_info->['texlab']},
+        \'whitelist': ['tex']
+        \})
+endif
+
 function! s:on_lsp_buffer_enabled() abort
     " setlocal omnifunc=lsp#complete
     " setlocal signcolumn=yes
