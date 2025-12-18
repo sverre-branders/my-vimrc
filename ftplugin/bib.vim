@@ -9,4 +9,4 @@ else
     echom "Consider installing 'bibtool'"
 endif
 
-:command! checkValid march ErrorMsg /[^\x00-\x7F]/
+:command! CheckValid march ErrorMsg /[^\x00-\x7F]/
